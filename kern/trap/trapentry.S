@@ -44,7 +44,7 @@
     csrrw s0, sscratch, x0
     csrr s1, sstatus
     csrr s2, sepc
-    csrr s3, stval
+    csrr s3, sbadaddr
     csrr s4, scause
 
     STORE s0, 2*REGBYTES(sp)
@@ -95,11 +95,10 @@
     LOAD x31, 31*REGBYTES(sp)
     # restore sp last
     LOAD x2, 2*REGBYTES(sp)
-    #addi sp, sp, 36 * REGBYTES
     .endm
 
     .globl __alltraps
-.align(2)
+    .align(2)
 __alltraps:
     SAVE_ALL
 
